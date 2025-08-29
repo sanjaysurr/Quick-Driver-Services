@@ -108,35 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Contact Form
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Sending...';
-                submitBtn.classList.add('loading');
-                submitBtn.disabled = true;
-
-                setTimeout(() => {
-                    contactForm.reset();
-                    submitBtn.textContent = 'Message Sent Successfully!';
-                    submitBtn.style.background = '#059669';
-
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.classList.remove('loading');
-                        submitBtn.disabled = false;
-                        submitBtn.style.background = '';
-                    }, 3000);
-
-                    alert('Thank you for your inquiry! We will contact you within 24 hours.');
-                }, 2000);
-            }
-        });
-    }
+    
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
