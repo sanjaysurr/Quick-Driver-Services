@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reliable Driver for Hire in Bangalore - Quick Driver Services</title>
+    <title> Quick Driver Services</title>
     <meta name="description" content="Bangalore's most trusted driver service. Hire verified, professional drivers for daily commute, family travel, and corporate needs. Starting at ₹20,000/month with 24/7 support.">
     <meta name="keywords" content="driver for hire bangalore, car driver services bangalore, professional driver service, private driver bangalore, trusted drivers">
     <link rel="stylesheet" href="styles.css">
@@ -50,20 +50,22 @@
     <!-- Right Side Form -->
     <div class="hero-form">
       <h2>Book a Driver</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="tel" placeholder="Phone Number" required />
-        <input type="text" placeholder="Pickup Location" required />
-        <select name="permanent_driver" class="select-control">
-  <option value="" selected>Select Your Permanent Driver (Optional)</option>
-  <option value="hatchback">Permanent Hatchback Driver</option>
-  <option value="suv">Permanent SUV Driver</option>
-  <option value="sedan">Permanent Sedan Driver</option>
-  <option value="luxury">Permanent Luxury Car Driver</option>
-</select>
+    <form id="booking-form">
+  <input type="text" name="user_name" placeholder="Your Name" required />
+  <input type="tel" name="user_phone" placeholder="Phone Number" required />
+  <input type="text" name="pickup_location" placeholder="Pickup Location" required />
 
-        <button type="submit" class="cta-primary">Book Now</button>
-      </form>
+  <select name="permanent_driver" class="select-control">
+    <option value="" selected>Select Your Permanent Driver (Optional)</option>
+    <option value="hatchback">Permanent Hatchback Driver</option>
+    <option value="suv">Permanent SUV Driver</option>
+    <option value="sedan">Permanent Sedan Driver</option>
+    <option value="luxury">Permanent Luxury Car Driver</option>
+  </select>
+
+  <button type="submit" class="cta-primary">Book Now</button>
+</form>
+
     </div>
 
   </div>
@@ -561,5 +563,36 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS
+  (function() {
+    emailjs.init("ppJAXQ8vSdd_e4HDy"); // Replace with your actual EmailJS public key
+  })();
+
+  // Reservation form submission
+  const form = document.getElementById("booking-form");
+  const button = form.querySelector("button");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    button.textContent = "Sending...";
+    button.disabled = true;
+
+    emailjs.sendForm("service_dhyyg41", "template_dnjn1kx", this)
+      .then(() => {
+        alert("✅ Reservation sent successfully!");
+        form.reset();
+      }, (error) => {
+        alert("❌ Failed to send reservation. Please try again.");
+        console.error("EmailJS Error:", error);
+      })
+      .finally(() => {
+        button.textContent = "Book Reservation";
+        button.disabled = false;
+      });
+  });
+</script>
 </body>
 </html>
